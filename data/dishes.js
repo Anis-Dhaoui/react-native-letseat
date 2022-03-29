@@ -2,8 +2,8 @@ export const DISHES =
     [
         {
         id: 0,
-        name:'Uthappizza',
-        image: 'images/uthappizza.png',
+        name:'Chermoula rib eye roast',
+        image: 'chermoula-rib-eye-roast-with-broccolini-44753-1.jpg',
         category: 'mains',
         label:'Hot',
         price:'4.99',
@@ -12,8 +12,8 @@ export const DISHES =
         },
         {
         id: 1,
-        name:'Zucchipakoda',
-        image: 'images/zucchipakoda.png',
+        name:'Matt prestons homestyle chicken schnitzel',
+        image: 'matt-prestons-homestyle-chicken-schnitzel-43709-2.jpg',
         category: 'appetizer',
         label:'',
         price:'1.99',
@@ -22,8 +22,8 @@ export const DISHES =
         },
         {
         id: 2,
-        name:'Vadonut',
-        image: 'images/vadonut.png',
+        name:'Prawn cocktail salad',
+        image: 'prawn-cocktail-salad.jpg',
         category: 'appetizer',
         label:'New',
         price:'1.99',
@@ -32,8 +32,8 @@ export const DISHES =
         },
         {
         id: 3,
-        name:'ElaiCheese Cake',
-        image: 'images/elaicheesecake.png',
+        name:'Stuffed lamb saddle with tzatziki',
+        image: 'stuffed-lamb-saddle-with-tzatziki-43769-2.jpg',
         category: 'dessert',
         label:'',
         price:'2.99',
