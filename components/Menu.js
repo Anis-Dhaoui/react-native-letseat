@@ -14,13 +14,14 @@ export default function Menu(props) {
                         <Card.Image
                             source={require("./images/prawn-cocktail-salad.jpg")}
                         />
-                        <Text style={{ marginVertical: 10 }}>
+                        <Text numberOfLines={2} style={{ marginVertical: 10 }}>
                             {item.description}
                         </Text>
                         <Button
                             icon={<Icon name='code' color='#ffffff' />}
                             buttonStyle={{ borderRadius: 3, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-                            title='VIEW NOW' 
+                            title='Read More'
+                            onPress={() => props.handlePress(item.id)}
                         />
                     </Card>
                 )
