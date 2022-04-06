@@ -21,7 +21,7 @@ export default function Menu(props) {
                             icon={<Icon name='code' color='#ffffff' />}
                             buttonStyle={{ borderRadius: 3, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                             title='Read More'
-                            onPress={() => props.handlePress(item.id)}
+                            onPress={() => props.navigation.navigate('Detail', {dish: item})}
                         />
                     </Card>
                 )

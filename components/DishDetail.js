@@ -1,43 +1,36 @@
-import { View, Text, Modal, Pressable } from 'react-native'
-import React, { useRef } from 'react'
-import { Card } from 'react-native-elements';
+import { Text, ScrollView, } from 'react-native'
+import React from 'react'
+import { Card, Divider } from 'react-native-elements';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Comments from './comments';
 
-export default function DishDetail(props) {
-    const dish = props.dish;
+export default function DishDetail({ route, navigation }) {
+    const dish = route.params.dish;
     if (dish !== undefined) {
-        const tooltipRef = useRef(null);
-
-        const onOpenToolTip = () => {
-            setTimeout(function () { tooltipRef.current.toggleTooltip(); }, 3000);
-        }
         return (
-            <View>
-                <GestureRecognizer onSwipeDown={() => props.closeModal()}>
-                    <Modal
-                        animationType="slide"
-                        transparent={false}
-                        visible={props.isModalOpen}
-                        statusBarTranslucent={true}
-                        onRequestClose={() => {
-                            props.closeModal();
-                        }}
-                    >
-                        <Card containerStyle={{ backgroundColor: '#f0e9e9', marginTop: 30 }}>
-                            <Card.Image
-                                source={require("./images/prawn-cocktail-salad.jpg")}
-                            />
-                            <Card.Title style={{marginTop: 10}}> {dish.name} </Card.Title>
-                            <Text style={{ marginVertical: 10 }}>
-                                {dish.description}
-                            </Text>
-                        </Card>
-                    </Modal>
-                </GestureRecognizer>
-            </View>
+            <GestureRecognizer onSwipeLeft={() => navigation.goBack()}>
+                <ScrollView>
+                    <Card containerStyle={{ backgroundColor: '#f0e9e9', marginTop: 30 }}>
+                        <Card.Image
+                            source={require("./images/prawn-cocktail-salad.jpg")}
+                        />
+                        <Card.Title style={{ marginTop: 10 }}> {dish.name} </Card.Title>
+                        <Text style={{ marginVertical: 10 }}>
+                            {dish.description}
+                        </Text>
+                    </Card>
+
+                    <Divider
+                        subHeader="Comments"
+                        subHeaderStyle={{ color: '#fff', backgroundColor: '#c7c5c5', paddingVertical: 10, textAlign: 'center', fontSize: 22 }}
+                    />
+                    <Comments />
+                </ScrollView>
+
+            </GestureRecognizer>
 
         )
     } else {
-        return (null)
+        return (<Text>No dish found</Text>)
     }
 }
