@@ -1,14 +1,14 @@
 import { Text, View } from 'react-native';
 import React, { Component } from 'react';
 import { DISHES } from '../data/dishes';
+import Home from './Home';
 import Menu from './Menu';
 import DishDetail from './DishDetail';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './Home';
-import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 export default class Main extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       dishes: DISHES,
@@ -16,30 +16,55 @@ export default class Main extends Component {
       showSeleteDish: false,
     }
   }
-  selecteDish(dishId){
-    this.setState({...this.state, selecteDish: dishId, showSeleteDish: !this.state.showSeleteDish})
+  selecteDish(dishId) {
+    this.setState({ ...this.state, selecteDish: dishId, showSeleteDish: !this.state.showSeleteDish })
   }
   render() {
     const Stack = createNativeStackNavigator();
+    const Drawer = createDrawerNavigator();
+
+    const Root = () => {
+      return (
+        <Drawer.Navigator initialRouteName='Home' >
+          <Drawer.Screen name="Home" component={Home}
+            options={{
+              headerShown: true,
+              headerStyle: { backgroundColor: '#00a2ff' },
+              headerTintColor: '#000',
+              headerTitleStyle: { fontWeight: 'bold' }
+            }}
+          />
+          <Drawer.Screen name="Menu"
+            options={{
+              headerShown: true,
+              headerStyle: { backgroundColor: '#00a2ff' },
+              headerTintColor: '#000',
+              headerTitleStyle: { fontWeight: 'bold' }
+            }}
+          >
+            {props => <Menu {...props} dishes={this.state.dishes} />}
+          </Drawer.Screen>
+        </Drawer.Navigator>
+      )
+    }
+
     return (
-      <Stack.Navigator initialRouteName='Menu'>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Menu">
-          {props => <Menu {...props} dishes={this.state.dishes} />}
-        </Stack.Screen>
-        <Stack.Screen name="Detail" component={DishDetail} />
-
-
-
-
-
-
-
-
-
-
-        {/* <Menu dishes={this.state.dishes} handlePress={(dishId) => this.selecteDish(dishId)} />
-        <DishDetail isModalOpen={this.state.showSeleteDish} closeModal={() => this.setState({showSeleteDish: false})} dish={this.state.dishes.filter((item) => item.id === this.state.selecteDish )[0]} /> */}
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen
+          name="Root"
+          component={Root}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DishDetail}
+          options={({ route }) => ({
+            title: route.params.dish.name,
+            headerStyle: { backgroundColor: '#f0e9f3' },
+            headerTintColor: '#000',
+            headerTitleStyle: { fontWeight: 'bold' }
+          })}
+        />
       </Stack.Navigator>
     )
   }

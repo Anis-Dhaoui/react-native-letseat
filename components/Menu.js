@@ -19,7 +19,7 @@ export default function Menu(props) {
                         </Text>
                         <Button
                             icon={<Icon name='code' color='#ffffff' />}
-                            buttonStyle={{ borderRadius: 3, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
+                            buttonStyle={{ borderRadius: 3, marginLeft: 0, marginRight: 0, marginBottom: 0, backgroundColor: '#00a2ff' }}
                             title='Read More'
                             onPress={() => props.navigation.navigate('Detail', {dish: item})}
                         />

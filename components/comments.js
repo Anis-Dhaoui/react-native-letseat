@@ -30,7 +30,7 @@ export default class Comments extends Component {
                 {
                     this.state.data.map((item) => {
                         return (
-                            <View style={styles.container}>
+                            <View style={styles.container} key={item.id}>
                                 <TouchableOpacity onPress={() => { }}>
                                     <Image style={styles.image} source={{ uri: item.image }} />
                                 </TouchableOpacity>
