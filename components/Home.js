@@ -1,11 +1,22 @@
-import { View, Text, FlatList, Image, TouchableHighlight, StyleSheet } from 'react-native'
-import React from 'react'
-import { dishesCard } from '../AppStyles';
+import { View, Text, FlatList, Image, TouchableHighlight, StyleSheet, Dimensions } from 'react-native'
+import React, { useState } from 'react'
+import { dishesCard, isLandscape } from '../AppStyles';
 import { DISHES } from '../data/dishes';
 
 export default function Home(props) {
-  const renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor="none" activeOpacity={0.4} onPress={() => props.navigation.navigate('Detail', {dish: item})}>
+  const [landScape, setlandScape] = useState();
+  const isLandscape = () => {
+    const dim = Dimensions.get('screen');
+    if (dim.width > dim.height) {
+      setlandScape(4);
+    } else {
+      setlandScape(2);
+    }
+  }
+
+
+  const renderDishes = ({ item }) => (
+    <TouchableHighlight underlayColor="none" activeOpacity={0.4} onPress={() => props.navigation.navigate('Detail', { dish: item })}>
       <View style={styles.container}>
         <Image style={styles.photo} source={require("./images/prawn-cocktail-salad.jpg")} />
         <Text style={styles.title}>{item.name}</Text>
@@ -15,9 +26,9 @@ export default function Home(props) {
   );
 
   return (
-    <View>
+    <View style={{ marginBottom: 60 }} onLayout={() => isLandscape()}>
       <Text style={styles.headlineText}>Most Popular Dishes</Text>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={DISHES} renderItem={renderRecipes} keyExtractor={(item) => `${item.id}`} />
+      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={landScape} key={landScape} data={DISHES} renderItem={renderDishes} keyExtractor={(item) => `${item.id}`} />
     </View>
   );
 }

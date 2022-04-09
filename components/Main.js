@@ -11,13 +11,8 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dishes: DISHES,
-      selecteDish: null,
-      showSeleteDish: false,
+      dishes: DISHES
     }
-  }
-  selecteDish(dishId) {
-    this.setState({ ...this.state, selecteDish: dishId, showSeleteDish: !this.state.showSeleteDish })
   }
   render() {
     const Stack = createNativeStackNavigator();
