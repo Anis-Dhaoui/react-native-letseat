@@ -25,13 +25,14 @@ export default class Main extends Component {
 
     const Root = () => {
       return (
-        <Drawer.Navigator initialRouteName='Home' >
+        <Drawer.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName='Home' >
           <Drawer.Screen name="Home" component={Home}
             options={{
               headerShown: true,
               headerStyle: { backgroundColor: '#00a2ff' },
               headerTintColor: '#000',
               headerTitleStyle: { fontWeight: 'bold' }
+
             }}
           />
           <Drawer.Screen name="Menu"
