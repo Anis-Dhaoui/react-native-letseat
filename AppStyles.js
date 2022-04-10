@@ -46,8 +46,3 @@ export const dishesCard = StyleSheet.create({
     marginVertical: 5
   }
 });
-
-// Check landscape orientation
-export const isLandscape = () =>{
-  return width > height;
-}

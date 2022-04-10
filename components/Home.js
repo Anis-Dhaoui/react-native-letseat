@@ -1,6 +1,6 @@
 import { View, Text, FlatList, Image, TouchableHighlight, StyleSheet, Dimensions } from 'react-native'
 import React, { useState } from 'react'
-import { dishesCard, isLandscape } from '../AppStyles';
+import { dishesCard } from '../AppStyles';
 import { DISHES } from '../data/dishes';
 
 export default function Home(props) {
