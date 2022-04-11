@@ -4,6 +4,7 @@ import { DISHES } from '../data/dishes';
 import Home from './Home';
 import Menu from './Menu';
 import DishDetail from './DishDetail';
+import Aboutus from './Aboutus';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -40,6 +41,16 @@ export default class Main extends Component {
           >
             {props => <Menu {...props} dishes={this.state.dishes} />}
           </Drawer.Screen>
+
+          <Drawer.Screen name="About" component={Aboutus}
+            options={{
+              headerShown: true,
+              headerStyle: { backgroundColor: '#00a2ff' },
+              headerTintColor: '#000',
+              headerTitleStyle: { fontWeight: 'bold' }
+
+            }}
+          />
         </Drawer.Navigator>
       )
     }
