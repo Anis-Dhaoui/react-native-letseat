@@ -10,7 +10,7 @@ export const STAFF = [
   },
   {
     id: 1,
-    name: 'Jogn Daniel',
+    name: 'John Daniel',
     image: '/assets/images/alberto.png',
     designation: 'Executive Chef',
     abbr: 'EC',
