@@ -10,8 +10,8 @@ export default function Comments(props) {
             {
                 props.comments.map((item) => {
                     return (
-                        <View>
-                            <View style={styles.container} key={item.id}>
+                        <View key={item.id}>
+                            <View style={styles.container}>
                                 <TouchableOpacity onPress={() => { }}>
                                     <Image style={styles.image} source={{ uri: 'https://www.w3schools.com/howto/img_avatar.png' }} />
                                 </TouchableOpacity>
