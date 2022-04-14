@@ -1,55 +1,38 @@
-import React, { Component } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Image
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { Divider } from 'react-native-elements';
+import formatDate from '../plugins/formatDate';
 
-export default class Comments extends Component {
+export default function Comments(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [
-                { id: 1, image: "https://bootdey.com/img/Content/avatar/avatar1.png", name: "Frank Odalthh", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-                { id: 2, image: "https://bootdey.com/img/Content/avatar/avatar6.png", name: "John DoeLink", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-                { id: 3, image: "https://bootdey.com/img/Content/avatar/avatar7.png", name: "March SoulLaComa", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-                { id: 4, image: "https://bootdey.com/img/Content/avatar/avatar2.png", name: "Finn DoRemiFaso", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-                { id: 5, image: "https://bootdey.com/img/Content/avatar/avatar3.png", name: "Maria More More", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-                { id: 6, image: "https://bootdey.com/img/Content/avatar/avatar4.png", name: "Clark June Boom!", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-                { id: 7, image: "https://bootdey.com/img/Content/avatar/avatar5.png", name: "The googler", comment: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." },
-            ]
-        }
-    }
-
-    render() {
-        return (
-            <View>
-                {
-                    this.state.data.map((item) => {
-                        return (
+    return (
+        <View>
+            {
+                props.comments.map((item) => {
+                    return (
+                        <View>
                             <View style={styles.container} key={item.id}>
                                 <TouchableOpacity onPress={() => { }}>
-                                    <Image style={styles.image} source={{ uri: item.image }} />
+                                    <Image style={styles.image} source={{ uri: 'https://www.w3schools.com/howto/img_avatar.png' }} />
                                 </TouchableOpacity>
                                 <View style={styles.content}>
                                     <View style={styles.contentHeader}>
-                                        <Text style={styles.name}>{item.name}</Text>
+                                        <Text style={styles.name}>{item.author}</Text>
                                         <Text style={styles.time}>
-                                            9:58 am
+                                            {formatDate(item.date)}
                                         </Text>
                                     </View>
-                                    <Text rkType='primary3 mediumLine'>{item.comment}</Text>
+                                    <Text>{item.comment}</Text>
+
                                 </View>
                             </View>
-                        );
-                    })
-                }
-            </View>
-        );
-    }
+                            <Divider color={'#1f1313'} />
+                        </View>
+                    );
+                })
+            }
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -78,9 +61,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#CCCCCC"
     },
     image: {
-        width: 45,
-        height: 45,
-        borderRadius: 20,
+        width: 55,
+        height: 55,
+        borderRadius: 50,
         marginLeft: -10
     },
     time: {
@@ -90,5 +73,6 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 16,
         fontWeight: "bold",
+        color: '#2a3013ff'
     },
 }); 

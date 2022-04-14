@@ -3,14 +3,15 @@ import React from 'react'
 import { Card, Divider } from 'react-native-elements';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Comments from './comments';
+import { COMMENTS } from '../data/comments';
 
 export default function DishDetail({ route, navigation }) {
     const dish = route.params.dish;
     if (dish !== undefined) {
         return (
-            <GestureRecognizer onSwipeLeft={() => navigation.goBack()}>
+            <GestureRecognizer style={{ marginVertical: 5 }} onSwipeLeft={() => navigation.goBack()}>
                 <ScrollView>
-                    <Card containerStyle={{ backgroundColor: '#f0e9e9', marginTop: 5 }}>
+                    <Card containerStyle={{ backgroundColor: '#f0e9e9' }}>
                         <Card.Image
                             source={require("./images/prawn-cocktail-salad.jpg")}
                         />
@@ -22,11 +23,10 @@ export default function DishDetail({ route, navigation }) {
 
                     <Divider
                         subHeader="Comments"
-                        subHeaderStyle={{ color: '#fff', backgroundColor: '#f0e9e3', paddingVertical: 10, textAlign: 'center', fontSize: 22 }}
+                        subHeaderStyle={{ color: '#000000', backgroundColor: '#f0e9e3', paddingVertical: 10, textAlign: 'center', fontSize: 22 }}
                     />
-                    <Comments />
+                    <Comments comments={COMMENTS.filter(item => item.dishId === dish.id)} />
                 </ScrollView>
-
             </GestureRecognizer>
 
         )

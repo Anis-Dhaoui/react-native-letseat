@@ -13,10 +13,13 @@ export default function Home(props) {
       setlandScape(2);
     }
   }
-props.navigation.openDrawer();
 
   const renderDishes = ({ item }) => (
-    <TouchableHighlight underlayColor="none" activeOpacity={0.4} onPress={() => props.navigation.navigate('Detail', { dish: item })}>
+    <TouchableHighlight
+      underlayColor="none"
+      activeOpacity={0.4}
+      onPress={() => props.navigation.navigate('Detail', { dish: item })}
+    >
       <View style={styles.container}>
         <Image style={styles.photo} source={require("./images/prawn-cocktail-salad.jpg")} />
         <Text style={styles.title}>{item.name}</Text>
