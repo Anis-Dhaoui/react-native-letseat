@@ -6,7 +6,10 @@ import Menu from './Menu';
 import DishDetail from './DishDetail';
 import Aboutus from './Aboutus';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
+import { Icon, Image } from 'react-native-elements';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Logo from './Logo';
 
 export default class Main extends Component {
   constructor(props) {
@@ -18,17 +21,19 @@ export default class Main extends Component {
   render() {
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
-
     const Root = () => {
       return (
-        <Drawer.Navigator screenOptions={{headerTitleAlign: 'center'}} initialRouteName='Home' >
+        <Drawer.Navigator screenOptions={{ headerTitleAlign: 'center' }} initialRouteName='Home' drawerContent={(props) => <Logo {...props} />}>
           <Drawer.Screen name="Home" component={Home}
             options={{
               headerShown: true,
               headerStyle: { backgroundColor: '#00a2ff' },
               headerTintColor: '#000',
-              headerTitleStyle: { fontWeight: 'bold' }
-
+              headerTitleStyle: { fontWeight: 'bold' },
+              drawerActiveTintColor: '#008cff',
+              drawerIcon: (tintColor) => (
+                <Icon name='home' color={tintColor.color} />
+              )
             }}
           />
           <Drawer.Screen name="Menu"
@@ -36,7 +41,10 @@ export default class Main extends Component {
               headerShown: true,
               headerStyle: { backgroundColor: '#00a2ff' },
               headerTintColor: '#000',
-              headerTitleStyle: { fontWeight: 'bold' }
+              headerTitleStyle: { fontWeight: 'bold' },
+              drawerIcon: (tintColor) => (
+                <Icon name='menu' color={tintColor.color} />
+              )
             }}
           >
             {props => <Menu {...props} dishes={this.state.dishes} />}
@@ -47,8 +55,10 @@ export default class Main extends Component {
               headerShown: true,
               headerStyle: { backgroundColor: '#00a2ff' },
               headerTintColor: '#000',
-              headerTitleStyle: { fontWeight: 'bold' }
-
+              headerTitleStyle: { fontWeight: 'bold' },
+              drawerIcon: (tintColor) => (
+                <Icon name='info' color={tintColor.color} />
+              )
             }}
           />
         </Drawer.Navigator>

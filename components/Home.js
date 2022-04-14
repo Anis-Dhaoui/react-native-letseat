@@ -13,7 +13,7 @@ export default function Home(props) {
       setlandScape(2);
     }
   }
-
+props.navigation.openDrawer();
 
   const renderDishes = ({ item }) => (
     <TouchableHighlight underlayColor="none" activeOpacity={0.4} onPress={() => props.navigation.navigate('Detail', { dish: item })}>
