@@ -1,13 +1,13 @@
 import { Text, ScrollView } from 'react-native'
 import React from 'react'
 import { Card, Button, Icon } from 'react-native-elements'
+import { DISHES } from '../data/dishes';
 
 export default function Menu(props) {
-  const list = props.dishes;
   return (
     <ScrollView>
         {
-            list.map((item, i) => {
+            DISHES.map((item, i) => {
                 return(
                     <Card key={i}>
                         <Card.Title> {item.name} </Card.Title>

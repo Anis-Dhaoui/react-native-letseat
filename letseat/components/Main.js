@@ -1,24 +1,16 @@
 import { Text, View } from 'react-native';
-import React, { Component } from 'react';
-import { DISHES } from '../data/dishes';
+import React from 'react';
 import Home from './Home';
 import Menu from './Menu';
 import DishDetail from './DishDetail';
 import Aboutus from './Aboutus';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
-import { Icon, Image } from 'react-native-elements';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Icon } from 'react-native-elements';
 import Logo from './Logo';
 
-export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES
-    }
-  }
-  render() {
+export default function (){
+
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
     const Root = () => {
@@ -36,7 +28,7 @@ export default class Main extends Component {
               )
             }}
           />
-          <Drawer.Screen name="Menu"
+          <Drawer.Screen name="Menu" component={Menu}
             options={{
               headerShown: true,
               headerStyle: { backgroundColor: '#00a2ff' },
@@ -46,9 +38,9 @@ export default class Main extends Component {
                 <Icon name='menu' color={tintColor.color} />
               )
             }}
-          >
-            {props => <Menu {...props} dishes={this.state.dishes} />}
-          </Drawer.Screen>
+          />
+            {/* {props => <Menu {...props} dishes={this.state.dishes} />}
+          </Drawer.Screen> */}
 
           <Drawer.Screen name="About" component={Aboutus}
             options={{
@@ -84,5 +76,4 @@ export default class Main extends Component {
         />
       </Stack.Navigator>
     )
-  }
 }
