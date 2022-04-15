@@ -9,71 +9,71 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Icon } from 'react-native-elements';
 import Logo from './Logo';
 
-export default function (){
+export default function () {
 
-    const Stack = createNativeStackNavigator();
-    const Drawer = createDrawerNavigator();
-    const Root = () => {
-      return (
-        <Drawer.Navigator screenOptions={{ headerTitleAlign: 'center' }} initialRouteName='Home' drawerContent={(props) => <Logo {...props} />}>
-          <Drawer.Screen name="Home" component={Home}
-            options={{
-              headerShown: true,
-              headerStyle: { backgroundColor: '#00a2ff' },
-              headerTintColor: '#000',
-              headerTitleStyle: { fontWeight: 'bold' },
-              drawerActiveTintColor: '#008cff',
-              drawerIcon: (tintColor) => (
-                <Icon name='home' color={tintColor.color} />
-              )
-            }}
-          />
-          <Drawer.Screen name="Menu" component={Menu}
-            options={{
-              headerShown: true,
-              headerStyle: { backgroundColor: '#00a2ff' },
-              headerTintColor: '#000',
-              headerTitleStyle: { fontWeight: 'bold' },
-              drawerIcon: (tintColor) => (
-                <Icon name='menu' color={tintColor.color} />
-              )
-            }}
-          />
-            {/* {props => <Menu {...props} dishes={this.state.dishes} />}
+  const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
+  const Root = () => {
+    return (
+      <Drawer.Navigator screenOptions={{ headerTitleAlign: 'center' }} initialRouteName='Home' drawerContent={(props) => <Logo {...props} />}>
+        <Drawer.Screen name="Home" component={Home}
+          options={{
+            headerShown: true,
+            headerStyle: { backgroundColor: '#00a2ff' },
+            headerTintColor: '#000',
+            headerTitleStyle: { fontWeight: 'bold' },
+            drawerActiveTintColor: '#008cff',
+            drawerIcon: (tintColor) => (
+              <Icon name='home' color={tintColor.color} />
+            )
+          }}
+        />
+        <Drawer.Screen name="Menu" component={Menu}
+          options={{
+            headerShown: true,
+            headerStyle: { backgroundColor: '#00a2ff' },
+            headerTintColor: '#000',
+            headerTitleStyle: { fontWeight: 'bold' },
+            drawerIcon: (tintColor) => (
+              <Icon name='menu' color={tintColor.color} />
+            )
+          }}
+        />
+        {/* {props => <Menu {...props} dishes={this.state.dishes} />}
           </Drawer.Screen> */}
 
-          <Drawer.Screen name="About" component={Aboutus}
-            options={{
-              headerShown: true,
-              headerStyle: { backgroundColor: '#00a2ff' },
-              headerTintColor: '#000',
-              headerTitleStyle: { fontWeight: 'bold' },
-              drawerIcon: (tintColor) => (
-                <Icon name='info' color={tintColor.color} />
-              )
-            }}
-          />
-        </Drawer.Navigator>
-      )
-    }
-
-    return (
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen
-          name="Root"
-          component={Root}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Detail"
-          component={DishDetail}
-          options={({ route }) => ({
-            title: route.params.dish.name,
-            headerStyle: { backgroundColor: '#f0e9f3' },
+        <Drawer.Screen name="About" component={Aboutus}
+          options={{
+            headerShown: true,
+            headerStyle: { backgroundColor: '#00a2ff' },
             headerTintColor: '#000',
-            headerTitleStyle: { fontWeight: 'bold' }
-          })}
+            headerTitleStyle: { fontWeight: 'bold' },
+            drawerIcon: (tintColor) => (
+              <Icon name='info' color={tintColor.color} />
+            )
+          }}
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     )
+  }
+
+  return (
+    <Stack.Navigator initialRouteName='Home'>
+      <Stack.Screen
+        name="Root"
+        component={Root}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={DishDetail}
+        options={({ route }) => ({
+          title: route.params.dish.name,
+          headerStyle: { backgroundColor: '#f0e9f3' },
+          headerTintColor: '#000',
+          headerTitleStyle: { fontWeight: 'bold' }
+        })}
+      />
+    </Stack.Navigator>
+  )
 }
