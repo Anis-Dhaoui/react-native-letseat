@@ -1,9 +1,10 @@
 import { View, Text, FlatList, Image, TouchableHighlight, StyleSheet, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { dishesCard } from '../AppStyles';
-import { DISHES } from '../data/dishes';
+import { useStore } from '../Context/Store';
 
 export default function Home(props) {
+  const [state, dispatch] = useStore();
   const [landScape, setlandScape] = useState();
   const isLandscape = () => {
     const dim = Dimensions.get('screen');
@@ -27,13 +28,23 @@ export default function Home(props) {
       </View>
     </TouchableHighlight>
   );
-
+if(state.dishes){
+  if(state.dishes.loading){
+    return <Text style={{textAlign: 'center', marginTop: 150}}>Loading...</Text>
+  }
+  if(state.dishes.errMsg){
+    return <Text> {state.dishes.errMsg} </Text>
+  }
   return (
     <View style={{ marginBottom: 60 }} onLayout={() => isLandscape()}>
       <Text style={styles.headlineText}>Most Popular Dishes</Text>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={landScape} key={landScape} data={DISHES} renderItem={renderDishes} keyExtractor={(item) => `${item.id}`} />
+      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={landScape} key={landScape} data={state.dishes.dishes} renderItem={renderDishes} keyExtractor={(item) => `${item.id}`} />
     </View>
   );
+}else{
+  return null
+}
+
 }
 
 const styles = StyleSheet.create({

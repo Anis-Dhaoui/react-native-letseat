@@ -1,5 +1,4 @@
-import { Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './Home';
 import Menu from './Menu';
 import DishDetail from './DishDetail';
@@ -8,12 +7,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Icon } from 'react-native-elements';
 import Logo from './Logo';
+import { useStore } from '../Context/Store';
+import { fetchDishes, fetchStaff } from '../Context/Actions';
 
-export default function () {
+export default function Main () {
+  const [state, dispatch] = useStore();
 
+  useEffect(() => {
+    fetchDishes(dispatch);
+    fetchStaff(dispatch);
+  }, [])
+  
   const Stack = createNativeStackNavigator();
   const Drawer = createDrawerNavigator();
+  
   const Root = () => {
+    
     return (
       <Drawer.Navigator screenOptions={{ headerTitleAlign: 'center' }} initialRouteName='Home' drawerContent={(props) => <Logo {...props} />}>
         <Drawer.Screen name="Home" component={Home}
