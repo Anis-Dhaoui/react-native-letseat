@@ -3,9 +3,10 @@ import React from 'react'
 import { Card, Divider } from 'react-native-elements';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Comments from './comments';
-import { COMMENTS } from '../data/comments';
+import { useStore } from '../Context/Store';
 
 export default function DishDetail({ route, navigation }) {
+    const [state, dispatch] = useStore();
     const dish = route.params.dish;
     if (dish !== undefined) {
         return (
@@ -25,7 +26,7 @@ export default function DishDetail({ route, navigation }) {
                         subHeader="Comments"
                         subHeaderStyle={{ color: '#000000', backgroundColor: '#f0e9e3', paddingVertical: 10, textAlign: 'center', fontSize: 22 }}
                     />
-                    <Comments comments={COMMENTS.filter(item => item.dishId === dish.id)} />
+                    <Comments comments={state.comments.comments.filter(item => item.dishId === dish.id)} />
                 </ScrollView>
             </GestureRecognizer>
 

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { DishesRed, StaffRed } from "./Reducer";
+import { CommentsRed, DishesRed, StaffRed } from "./Reducer";
 
 
 const combineReducers = (slices) => (state, action) =>
@@ -12,7 +12,8 @@ const combineReducers = (slices) => (state, action) =>
 
 const rootReducer = combineReducers({
     dishes: DishesRed,
-    staff: StaffRed
+    staff: StaffRed,
+    comments: CommentsRed
 });
 
 const Store = React.createContext();

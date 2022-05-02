@@ -8,7 +8,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Icon } from 'react-native-elements';
 import Logo from './Logo';
 import { useStore } from '../Context/Store';
-import { fetchDishes, fetchStaff } from '../Context/Actions';
+import { fetchComments, fetchDishes, fetchStaff } from '../Context/Actions';
 
 export default function Main () {
   const [state, dispatch] = useStore();
@@ -16,6 +16,7 @@ export default function Main () {
   useEffect(() => {
     fetchDishes(dispatch);
     fetchStaff(dispatch);
+    fetchComments(dispatch)
   }, [])
   
   const Stack = createNativeStackNavigator();

@@ -58,3 +58,32 @@ const staffFailed = (errMsg) => ({
     type: actionTypes.STAFF_FAILED,
     payload: errMsg
 });
+
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ COMMENTS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+export function fetchComments(dispatch) {
+    dispatch(staffLoading());
+
+    axios.get(`${url}/comments`)
+        .then((res) => {
+            dispatch(addComments(res.data));
+        })
+        .catch((err) => {
+            dispatch(commentsFailed(err.message));
+            console.log(err.message);
+        })
+}
+
+const addComments = (comments) => ({
+    type: actionTypes.ADD_COMMENTS,
+    payload: comments
+});
+
+const commentsLoading = () => ({
+    type: actionTypes.COMMENTS_LOADING
+});
+
+const commentsFailed = (errMsg) => ({
+    type: actionTypes.COMMENTS_FAILED,
+    payload: errMsg
+});
