@@ -62,7 +62,7 @@ const staffFailed = (errMsg) => ({
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ COMMENTS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 export function fetchComments(dispatch) {
-    dispatch(staffLoading());
+    dispatch(commentsLoading());
 
     axios.get(`${url}/comments`)
         .then((res) => {
