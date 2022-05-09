@@ -2,6 +2,7 @@ import { View, Text, FlatList, Image, TouchableHighlight, StyleSheet, Dimensions
 import React, { useState } from 'react'
 import { dishesCard } from '../AppStyles';
 import { useStore } from '../Context/Store';
+import { url } from '../BaseUrl';
 
 export default function Home(props) {
   const [state, dispatch] = useStore();
@@ -22,7 +23,7 @@ export default function Home(props) {
       onPress={() => props.navigation.navigate('Detail', { dish: item })}
     >
       <View style={styles.container}>
-        <Image style={styles.photo} source={require("./images/prawn-cocktail-salad.jpg")} />
+        <Image style={styles.photo} source={{uri: `${url}/images/dishes/${item.image}`}} />
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.price}>{'$' + item.price}</Text>
       </View>

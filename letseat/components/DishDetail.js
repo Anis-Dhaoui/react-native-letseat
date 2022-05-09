@@ -4,6 +4,7 @@ import { Card, Divider } from 'react-native-elements';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Comments from './comments';
 import { useStore } from '../Context/Store';
+import { url } from '../BaseUrl';
 
 export default function DishDetail({ route, navigation }) {
     const [state, dispatch] = useStore();
@@ -14,7 +15,7 @@ export default function DishDetail({ route, navigation }) {
                 <ScrollView>
                     <Card containerStyle={{ backgroundColor: '#f0e9e9' }}>
                         <Card.Image
-                            source={require("./images/prawn-cocktail-salad.jpg")}
+                            source={{uri: `${url}/images/dishes/${dish.image}`}}
                         />
                         <Card.Title style={{ marginTop: 10 }}> {dish.name} </Card.Title>
                         <Text style={{ marginVertical: 10 }}>

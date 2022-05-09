@@ -2,6 +2,7 @@ import { Text, ScrollView } from 'react-native'
 import React from 'react'
 import { Card, Button, Icon } from 'react-native-elements'
 import { DISHES } from '../data/dishes';
+import { url } from '../BaseUrl';
 
 export default function Menu(props) {
   return (
@@ -12,7 +13,7 @@ export default function Menu(props) {
                     <Card key={i}>
                         <Card.Title> {item.name} </Card.Title>
                         <Card.Image
-                            source={require("./images/prawn-cocktail-salad.jpg")}
+                            source={{uri: `${url}/images/dishes/${item.image}`}}
                         />
                         <Text numberOfLines={2} style={{ marginVertical: 10 }}>
                             {item.description}

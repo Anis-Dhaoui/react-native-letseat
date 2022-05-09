@@ -13,6 +13,7 @@ export function fetchDishes(dispatch) {
         .catch((err) => {
             dispatch(dishesFailed(err.message));
             console.log(err.message);
+            console.log("THERE IS AN ERROR")
         })
 }
 
