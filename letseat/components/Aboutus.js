@@ -2,8 +2,13 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Modal, Dim
 import React, { useState } from 'react'
 import { STAFF } from '../data/staff'
 import { Button } from 'react-native-elements';
+import { url } from '../BaseUrl';
+import { useStore } from '../Context/Store';
 
 export default function Aboutus() {
+  const [state, dispatch] = useStore();
+  const staff = state.staff;
+  console.log(state.staff)
   const [isModalOpen, setisModalOpen] = useState(false);
   const [selectedProfile, setselectedProfile] = useState([]);
 
@@ -25,10 +30,10 @@ export default function Aboutus() {
       <View style={styles.container}>
         <Text style={styles.AboutHeader}>Our Staff</Text>
         {
-          STAFF.map((item) => {
+          staff.staff.map((item) => {
             return (
               <TouchableOpacity key={item.id} style={styles.card} onPress={() => { setselectedProfile(item); setisModalOpen(true) }}>
-                <Image style={styles.image} source={require("./images/anisdh.jpg")} />
+                <Image style={styles.image} source={{uri: `${url}/images/staff/${item.image}`}} />
                 <View style={styles.cardContent}>
                   <Text style={styles.name}>{item.name}</Text>
                   <Text style={styles.abbr}>{item.abbr}</Text>
@@ -52,7 +57,7 @@ export default function Aboutus() {
           <View style={styles.popup}>
             <View style={styles.popupContent}>
               <ScrollView contentContainerStyle={styles.modalInfo}>
-                <Image style={styles.image} source={require("./images/anisdh.jpg")} />
+                <Image style={styles.image} source={{uri: `${url}/images/staff/${selectedProfile.image}`}} />
                 <Text style={styles.name}>{selectedProfile.name}</Text>
                 <Text style={styles.position}>{selectedProfile.designation}</Text>
                 <Text style={styles.description}>{selectedProfile.description}</Text>
